@@ -5,7 +5,7 @@ Servo myservo;
 
 void setup()
 {
-  myservo.attach(D2);
+  myservo.attach(D4);
 }
 
 void loop()
