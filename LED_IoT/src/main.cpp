@@ -2,17 +2,15 @@
 #include <WiFiClient.h>
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
-#include <ESP8266WiFi.h>
-#include <ESP8266WebServer.h>
 
-
-const char* ssid="Nadhifa";
-const char* password="halohalo";
+const char *ssid = "Fatan";
+const char *password = "halohalo";
 
 ESP8266WebServer server(80);
 String webpage;
 
-void setup() {
+void setup()
+{
   Serial.begin(9600);
   delay(10);
 
@@ -20,13 +18,13 @@ void setup() {
   pinMode(D2, OUTPUT);
   pinMode(D3, OUTPUT);
 
-  //CONNECT WIFI NETWORK
+  // CONNECT WIFI NETWORK
   Serial.println();
   Serial.println("Configuring Access Point");
 
-  //Mengatur Wifi
+  // Mengatur Wifi
   WiFi.mode(WIFI_AP);
-  WiFi.begin(ssid,password);
+  WiFi.begin(ssid, password);
 
   Serial.println("IP address: ");
   Serial.println(WiFi.softAPIP());
@@ -41,52 +39,52 @@ void setup() {
   webpage += "<p>LED3: ";
   webpage += "<a href=\"LED3ON\"><button>ON</button></a><a href=\"LED3OFF\"><button>OFF</button></a></p><br>";
 
-  //Membuat tampilan webpage
-  server.on("/",  [](){
-    server.send(200, "text/html", webpage);
-  });
+  // Membuat tampilan webpage
+  server.on("/", []()
+            { server.send(200, "text/html", webpage); });
 
-  //Bagian ini untuk merespon perintah
-  server.on("/LED1ON", [](){
+  // Bagian ini untuk merespon perintah
+  server.on("/LED1ON", []()
+            {
     server.send(200, "text/html", webpage);
     digitalWrite(D0, HIGH);
-    delay(100);
-  });
+    delay(100); });
 
-  server.on("/LED2ON", [](){
+  server.on("/LED2ON", []()
+            {
     server.send(200, "text/html", webpage);
     digitalWrite(D2, HIGH);
-    delay(100);
-  });
+    delay(100); });
 
-  server.on("/LED3ON", [](){
+  server.on("/LED3ON", []()
+            {
     server.send(200, "text/html", webpage);
     digitalWrite(D3, HIGH);
-    delay(100);
-  });
+    delay(100); });
 
-  server.on("/LED1OFF", [](){
+  server.on("/LED1OFF", []()
+            {
     server.send(200, "text/html", webpage);
     digitalWrite(D0, LOW);
-    delay(100);
-  });
+    delay(100); });
 
-  server.on("/LED2OFF", [](){
+  server.on("/LED2OFF", []()
+            {
     server.send(200, "text/html", webpage);
     digitalWrite(D2, LOW);
-    delay(100);
-  });
+    delay(100); });
 
-  server.on("/LED3OFF", [](){
+  server.on("/LED3OFF", []()
+            {
     server.send(200, "text/html", webpage);
     digitalWrite(D3, LOW);
-    delay(100);
-  });
+    delay(100); });
 
   server.begin();
   Serial.print("Web server dijalankan");
 }
 
-void loop() {
+void loop()
+{
   server.handleClient();
 }
