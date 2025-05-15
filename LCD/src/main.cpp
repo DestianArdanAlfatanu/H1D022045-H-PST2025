@@ -16,10 +16,10 @@ void setup() {
   lcd.backlight();     // Nyalakan lampu latar LCD
 
   lcd.setCursor(0, 0); // Kolom 0, Baris 0
-  lcd.print("Nadhifa Zahra Kurniawan!");
+  lcd.print("Destian Ardan Alfatanu!");
 
   lcd.setCursor(0, 1); // Kolom 0, Baris 1
-  lcd.print("H1D022020");
+  lcd.print("H1D022045");
 }
 
 void loop() {
